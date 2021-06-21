@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         AzUjToOoPcL.AcYn
 // @namespace    https://github.com/n0s2/zjoocScript
-// @version      0.4
+// @version      0.5
 // @description  ZJOOC自动播放下一课，详细使用需求见附加信息或readme.md
 // @author       ColdThunder11,00LT00,Moonose
 // @match        *://www.zjooc.cn/ucenter/student/course/study/*/plan/detail/*
@@ -39,14 +39,17 @@
         else{
             childClass.nextSibling.click();
         }
-
-        var v_tmp=document.getElementsByTagName("video")[0];
-        if(v_tmp == null){//pdf学习
-            var pdf_button = document.getElementsByClassName("el-button el-button--default")[0];
-            pdf_button.click();//单击学习
-            nextVideoFunc();
-        }
-        else playVideoFunc();//播放视频
+        setTimeout(
+            function(){
+                var v_tmp=document.getElementsByTagName("video")[0];
+                if(v_tmp == null){//pdf学习
+                    var pdf_button = document.getElementsByClassName("el-button el-button--default")[0];
+                    pdf_button.click();//单击学习
+                    nextVideoFunc();
+                }
+                else playVideoFunc();
+            }//播放视频
+            ,5000);
     }
     var playVideoFunc=function(){
         var vidf=document.getElementsByTagName("video")[0];

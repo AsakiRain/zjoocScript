@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         ZJOOC自动播放
+// @name         AzUjToOoPcL.AcYn
 // @namespace    https://github.com/n0s2/zjoocScript
-// @version      0.3
+// @version      0.4
 // @description  ZJOOC自动播放下一课，详细使用需求见附加信息或readme.md
 // @author       ColdThunder11,00LT00,Moonose
 // @match        *://www.zjooc.cn/ucenter/student/course/study/*/plan/detail/*
@@ -39,17 +39,14 @@
         else{
             childClass.nextSibling.click();
         }
-        setTimeout(
-            function(){
-                var v_tmp=document.getElementsByTagName("video")[0];
-                if(v_tmp == null){//pdf学习
-                    var pdf_button = document.getElementsByClassName("el-button el-button--default")[0];
-                    pdf_button.click();//单击学习
-                    nextVideoFunc();
-                }
-                else playVideoFunc();
-            }//播放视频
-            ,5000);
+
+        var v_tmp=document.getElementsByTagName("video")[0];
+        if(v_tmp == null){//pdf学习
+            var pdf_button = document.getElementsByClassName("el-button el-button--default")[0];
+            pdf_button.click();//单击学习
+            nextVideoFunc();
+        }
+        else playVideoFunc();//播放视频
     }
     var playVideoFunc=function(){
         var vidf=document.getElementsByTagName("video")[0];
@@ -58,7 +55,9 @@
         var playLayerf=cbf.childNodes[0];
         /*速度*/
         //spd.children[speedIndex].click();
-        vidf.playbackRate = 16.0;
+        //vidf.playbackRate = 16.0;
+        var lastTime = vidf.duration;
+        vidf.currentTime = lastTime-5;
         /*音量*/
         if(muteFlag){
             cbf.children[18].click();
@@ -70,7 +69,9 @@
             var playLayerf=cbf.childNodes[0];
             /*速度*/
             //spd.children[speedIndex].click();
-            vidf.playbackRate = 16.0;
+            //vidf.playbackRate = 16.0;
+            var lastTime = vidf.duration;
+            vidf.currentTime = lastTime-5;
             /*音量*/
             if(muteFlag){
             cbf.children[18].click();
